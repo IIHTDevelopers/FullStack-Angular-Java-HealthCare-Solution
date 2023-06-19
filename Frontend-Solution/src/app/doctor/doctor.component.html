@@ -1,0 +1,66 @@
+<h1>Doctor List</h1>
+
+<!-- Search Doctor -->
+<div>
+  <label for="searchName">Search by Name:</label>
+  <input
+    type="text"
+    id="searchName"
+    name="searchName"
+    [(ngModel)]="searchName"
+  />
+  <button type="button" (click)="searchDoctorsByName()">Search</button>
+</div>
+
+<!-- Create or Update Doctor Form -->
+<form #doctorForm="ngForm" (ngSubmit)="saveDoctor()">
+  <h2>{{ editing ? "Update Doctor" : "Create Doctor" }}</h2>
+  <div>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="selectedDoctor.name"
+      required
+    />
+  </div>
+  <div>
+    <label for="hospital">Hospital:</label>
+    <select
+      id="hospital"
+      name="hospitalId"
+      [(ngModel)]="selectedDoctor.hospital.id"
+      required
+    >
+      <option *ngFor="let hospital of hospitals" [value]="hospital.id">
+        {{ hospital.name }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">{{ editing ? "Update" : "Create" }}</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+</form>
+
+<!-- Doctor List -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Hospital</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doctor of doctors">
+      <td>{{ doctor.id }}</td>
+      <td>{{ doctor.name }}</td>
+      <td>{{ doctor.hospital.name }}</td>
+      <td>
+        <button (click)="editDoctor(doctor)">Edit</button>
+        <button (click)="deleteDoctor(doctor.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

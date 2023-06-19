@@ -1,0 +1,115 @@
+<div>
+  <h2>Patients</h2>
+  <ul>
+    <li *ngFor="let patient of patients">
+      {{ patient.name }} - {{ patient.doctor.name }}
+      <button (click)="editPatient(patient)">Edit</button>
+      <button (click)="deletePatient(patient.id)">Delete</button>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Create / Update Patient</h2>
+  <form>
+    <label>Name:</label>
+    <input
+      [(ngModel)]="selectedPatient.name"
+      name="name"
+      type="text"
+      required
+    />
+    <br />
+    <label>Doctor:</label>
+    <select [(ngModel)]="selectedPatient.doctor.id" name="doctorId">
+      <option *ngFor="let doctor of doctors" [value]="doctor.id">
+        {{ doctor.name }}
+      </option>
+    </select>
+    <br />
+    <button *ngIf="!editing" (click)="createPatient()">Create</button>
+    <button *ngIf="editing" (click)="updatePatient()">Update</button>
+    <button *ngIf="editing" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
+
+<div>
+  <h2>Search Patients by Name</h2>
+  <input
+    [(ngModel)]="searchName"
+    name="searchName"
+    type="text"
+    placeholder="Enter patient name"
+  />
+  <button (click)="searchPatientsByName()">Search</button>
+</div>
+
+<!-- <div>
+  <h2>Patients</h2>
+  <div>
+    <label for="searchName">Search by Name:</label>
+    <input
+      type="text"
+      id="searchName"
+      [(ngModel)]="searchName"
+      (input)="searchPatientsByName()"
+    />
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Doctor</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.doctor.name }}</td>
+        <td>
+          <button (click)="editPatient(patient)">Edit</button>
+          <button (click)="deletePatient(patient.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <h2>{{ editing ? "Update Patient" : "Create Patient" }}</h2>
+    <form
+      #patientForm="ngForm"
+      (ngSubmit)="editing ? updatePatient() : createPatient()"
+    >
+      <div>
+        <label for="patientName">Patient Name:</label>
+        <input
+          type="text"
+          id="patientName"
+          name="patientName"
+          [(ngModel)]="selectedPatient.name"
+          required
+        />
+      </div>
+      <div>
+        <label for="doctor">Doctor:</label>
+        <select
+          id="doctor"
+          name="doctor"
+          [(ngModel)]="selectedPatient.doctor.id"
+          required
+        >
+          <option value="">-- Select Doctor --</option>
+          <option *ngFor="let doctor of doctors" [value]="doctor.id">
+            {{ doctor.name }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button type="submit">{{ editing ? "Update" : "Create" }}</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div> -->

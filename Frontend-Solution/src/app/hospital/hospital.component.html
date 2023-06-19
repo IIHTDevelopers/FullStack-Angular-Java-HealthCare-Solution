@@ -1,0 +1,47 @@
+<h2>Hospitals</h2>
+<table>
+  <tr>
+    <td>Name:</td>
+    <td>
+      <input
+        type="text"
+        [(ngModel)]="isEditMode ? selectedHospital.name : newHospital.name"
+        (keyup)="onKeyPress($event)"
+        required
+      />
+    </td>
+  </tr>
+</table>
+<button type="button" *ngIf="!isEditMode" (click)="createOrUpdateHospital()">
+  Create
+</button>
+<button type="button" *ngIf="isEditMode" (click)="createOrUpdateHospital()">
+  Update
+</button>
+<button type="button" *ngIf="isEditMode" (click)="cancelEdit()">Cancel</button>
+
+<h2>All Hospitals</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let hospital of hospitals">
+    <td>{{ hospital.id }}</td>
+    <td>{{ hospital.name }}</td>
+    <td>
+      <button (click)="editHospital(hospital)">Edit</button>
+      <button (click)="deleteHospital(hospital.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<h2>Search Hospitals</h2>
+<table>
+  <tr>
+    <td>Search by Name:</td>
+    <td><input type="text" [(ngModel)]="searchName" /></td>
+    <td><button (click)="searchHospitalsByName()">Search</button></td>
+  </tr>
+</table>
