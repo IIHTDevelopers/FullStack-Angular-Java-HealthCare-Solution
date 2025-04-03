@@ -79,7 +79,7 @@ public class TestUtils {
 
         customData = "";
         try{
-		    customData = readData("../custom.ih");
+		    customData = readData("../../custom.ih");
 		}catch(Exception e)	{}
 
 		String resultStatus = "Failed";
