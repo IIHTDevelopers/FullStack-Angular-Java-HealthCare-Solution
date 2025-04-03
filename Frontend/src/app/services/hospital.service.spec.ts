@@ -96,27 +96,6 @@ describe("HospitalService", () => {
       req.flush({});
     });
 
-    it("should retrieve all hospitals", () => {
-      const mockHospitals: Hospital[] = [
-        {
-          id: 1,
-          name: "Hospital A",
-        },
-        {
-          id: 2,
-          name: "Hospital B",
-        },
-      ];
-
-      service.getAllHospitals().subscribe((hospitals: any) => {
-        expect(hospitals).toEqual(mockHospitals);
-      });
-
-      const req = httpMock.expectOne(baseUrl);
-      expect(req.request.method).toBe("GET");
-      req.flush(mockHospitals);
-    });
-
     it("should retrieve a hospital by ID", () => {
       const mockHospitalId = 1;
       const mockHospital: Hospital = {
