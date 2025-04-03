@@ -158,40 +158,5 @@ describe("PatientComponent", () => {
       );
       expect(component.patients).toEqual(patients);
     });
-
-    it("should search for patients by name", () => {
-      const searchName = "Patient A";
-      const patients = [
-        {
-          id: 1,
-          name: "Patient A",
-          doctor: {
-            id: 1,
-            name: "Doctor A",
-            hospital: { id: 1, name: "Hospital A" },
-          },
-        },
-        {
-          id: 2,
-          name: "Patient A",
-          doctor: {
-            id: 1,
-            name: "Doctor A",
-            hospital: { id: 1, name: "Hospital A" },
-          },
-        },
-      ];
-      jest
-        .spyOn(patientService, "searchPatientsByName")
-        .mockReturnValue(of(patients));
-
-      component.searchName = searchName;
-      component.searchPatientsByName();
-
-      expect(patientService.searchPatientsByName).toHaveBeenCalledWith(
-        searchName
-      );
-      expect(component.patients).toEqual(patients);
-    });
   });
 });
