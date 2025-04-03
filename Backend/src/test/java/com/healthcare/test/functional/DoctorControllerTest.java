@@ -125,7 +125,7 @@ class DoctorControllerTest {
 	}
 
 	@Test
-	void testRestEndpointForAddNewDoctorIsBeingImplementedUsingMultilayerdArchitecture() throws Exception {
+	void testDoctorRestEndpointForAddNewDoctorIsBeingImplementedUsingMultilayerdArchitecture() throws Exception {
 		final int count[] = new int[1];
 		DoctorDTO doctorDTO = MasterData.getDoctorDTO();
 		Mockito.when(doctorService.saveDoctor(doctorDTO)).then(new Answer<DoctorDTO>() {
@@ -189,7 +189,7 @@ class DoctorControllerTest {
 	/************* Get Single Doctor ******************/
 
 	@Test
-	void testRestEndpointForFindingDoctorByIdIsExposedAndWorking() throws Exception {
+	void testDoctorRestEndpointForFindingDoctorByIdIsExposedAndWorking() throws Exception {
 		DoctorDTO doctorDTO = MasterData.getDoctorDTO();
 		Long id = doctorDTO.getId();
 		Mockito.when(doctorService.getDoctorById(id)).thenReturn(doctorDTO);
@@ -227,7 +227,7 @@ class DoctorControllerTest {
 	/************* Update Doctor *************************/
 
 	@Test
-	public void testRestEndpointForUpdatingDoctorIsExposedAndWorking() throws Exception {
+	public void testDoctorRestEndpointForUpdatingDoctorIsExposedAndWorking() throws Exception {
 		DoctorDTO doctorDTO = MasterData.getDoctorDTO();
 		Long id = doctorDTO.getId();
 		doctorDTO.setName("Ravi");
