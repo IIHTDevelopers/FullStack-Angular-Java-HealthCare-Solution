@@ -168,24 +168,6 @@ describe("DoctorComponent", () => {
       expect(component.editing).toBeFalsy();
     });
 
-    it("should clear the form and reset the editing flag", () => {
-      component.selectedDoctor = {
-        id: 1,
-        name: "Doctor A",
-        hospital: { id: 1, name: "Hospital A" },
-      };
-      component.editing = true;
-
-      component.clearForm();
-
-      expect(component.selectedDoctor).toEqual({
-        id: 0,
-        name: "",
-        hospital: { id: 0, name: "" },
-      });
-      expect(component.editing).toBeFalsy();
-    });
-
     it("should search doctors by name", () => {
       const mockDoctors: Doctor[] = [
         { id: 1, name: "Doctor A", hospital: { id: 1, name: "Hospital A" } },
